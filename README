@@ -1,0 +1,129 @@
+FitCheck
+An AI-Powered Context-Aware Wardrobe Stylist
+
+Overview
+FitCheck is a mobile application that digitizes personal wardrobes and generates intelligent, context-aware outfit recommendations using multimodal artificial intelligence. Unlike traditional wardrobe applications that rely on manual tagging or static rule-based filtering, FitCheck leverages vision-language models and reasoning-based inference to act as a virtual stylist.
+This repository contains the implementation developed as part of a Computer Science capstone project at NYU Abu Dhabi.
+
+Key Features
+Automatic wardrobe digitization through image-based garment analysis
+Context-aware outfit recommendation using natural language prompts
+Integration of live weather data to ensure practical styling
+Deterministic safety guardrails to prevent illogical outfit choices
+Cross-platform mobile application built with React Native
+
+System Architecture
+
+Frontend
+React Native with Expo
+Responsible for user interaction, image capture, and UI rendering
+
+Backend
+FastAPI (Python)
+Handles authentication, database access, AI orchestration, and business logic
+
+AI Components
+OpenAI GPT-4o / GPT-4o-mini for vision-based attribute extraction and reasoning
+Background removal using rembg (U²-Net)
+
+Storage
+MongoDB Atlas for wardrobe metadata
+Cloudinary for image storage
+
+External Services
+OpenWeatherMap API for live weather data
+
+Repository Structure
+.
+├── backend/
+│   ├── main.py
+│   ├── routes/
+│   ├── services/
+│   ├── models/
+│   └── utils/
+│
+├── frontend/
+│   ├── App.tsx
+│   ├── screens/
+│   ├── components/
+│   └── services/
+│
+├── requirements.txt
+└── README.md
+
+Setup Instructions
+Clone the Repository
+git clone https://github.com/your-username/fitcheck.git
+cd fitcheck
+
+Backend Setup
+Create a Virtual Environment
+cd backend
+python3 -m venv venv
+source venv/bin/activate
+
+Install Dependencies
+pip install -r requirements.txt
+
+Environment Variables
+Create a .env file in the backend/ directory with the following variables:
+
+OPENAI_API_KEY=your_openai_api_key
+MONGODB_URI=your_mongodb_uri
+CLOUDINARY_URL=your_cloudinary_url
+OPENWEATHER_API_KEY=your_openweather_api_key
+
+The .env file should not be committed to the repository.
+
+Run the Backend Server
+uvicorn main:app --reload
+
+The backend server will run at http://localhost:8000.
+
+Frontend Setup
+cd frontend
+npm install
+
+Start the Application
+npx expo start
+
+
+The application can be run using Expo Go, an iOS simulator, or an Android emulator.
+
+Testing the Application
+Functional Testing
+
+Register or log in as a user
+Upload garment images using the camera or gallery
+Verify automatically extracted garment attributes
+Generate outfits using natural language prompts
+Test weather-aware filtering by changing device location
+
+Example Prompts
+“Formal dinner outfit”
+“Casual brunch with friends”
+“Style this jacket for cold weather”
+
+Evaluation Methodology
+The system was evaluated through user testing with friends and family (approximately 10–15 participants). Participants interacted with the application and provided qualitative feedback through a short survey.
+
+The evaluation compared:
+A hybrid computer vision pipeline using object detection and similarity-based retrieval
+A multimodal LLM-based reasoning approach
+Evaluation focused on perceived outfit relevance, contextual appropriateness, cohesiveness, and overall user satisfaction.
+
+Limitations and Future Work
+Current limitations include API latency due to cloud-based inference, token constraints for large wardrobes, and prototype-scale user evaluation.
+
+Planned improvements include:
+Retrieval-Augmented Generation to scale to large wardrobes
+Caching and request optimization to reduce latency
+On-device model distillation to lower operational cost
+
+Academic Context
+This project was developed as part of the Computer Science capstone requirement at NYU Abu Dhabi (2025). The accompanying report details the system design, methodology, evaluation, and future work.
+
+Author
+Nikita Gupta
+Computer Science, NYU Abu Dhabi
+Email: ng2694@nyu.edu
